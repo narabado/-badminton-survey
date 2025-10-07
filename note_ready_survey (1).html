@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>出場者調査 - 東西高校生選抜バドミントン大会北海道予選</title>
+    
+    <!-- note.com最適化メタタグ -->
+    <meta property="og:title" content="🏸 出場者調査" />
+    <meta property="og:description" content="東西高校生選抜バドミントン大会北海道予選の参加希望調査フォーム。高校1・2年生対象、8カテゴリー詳細集計機能搭載。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="東西高校生選抜バドミントン大会" />
+    <meta name="description" content="東西高校生選抜バドミントン大会北海道予選の参加希望調査フォーム。各学校の参加予定人数を入力し、リアルタイム統計を確認できます。" />
+    <meta name="keywords" content="バドミントン,高校生,選抜大会,北海道,出場者調査,参加申込" />
+    
+    <!-- note.com表示最適化 -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="🏸 出場者調査" />
+    <meta name="twitter:description" content="東西高校生選抜バドミントン大会北海道予選の参加希望調査" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic UI', 'Meiryo UI', 'メイリオ', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 15px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .main-title {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 12px;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .info-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 6px;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+            backdrop-filter: blur(10px);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 16px 12px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            color: #666;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            min-height: 50px;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .tab-content {
+            display: none;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin: 20px 0;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e6ed;
+            border-radius: 10px;
+            font-size: 16px;
+            background: white;
+            transition: all 0.3s ease;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            touch-action: manipulation;
+        }
+
+        .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+            outline: none;
+            transform: translateY(-1px);
+        }
+
+        select.form-control {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 14px center;
+            background-repeat: no-repeat;
+            background-size: 18px;
+            padding-right: 50px;
+        }
+
+        .participants-section {
+            margin-top: 30px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #667eea;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .participants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .participant-card {
+            background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+            padding: 18px;
+            border-radius: 12px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .participant-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .participant-card label {
+            color: #495057;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 25px;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn:hover, .btn:active {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, #5a6fd8, #6a42a8);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d, #5a6268);
+            box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+        }
+
+        /* 統計表示の高度なスタイル */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        .stats-section {
+            background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 6px solid #667eea;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .stats-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .stats-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #dee2e6;
+            position: relative;
+        }
+
+        .stats-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 1px;
+        }
+
+        .stats-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e9ecef;
+            transition: all 0.2s ease;
+        }
+
+        .stats-item:last-child {
+            border-bottom: none;
+        }
+
+        .stats-item:hover {
+            background: rgba(102, 126, 234, 0.05);
+            margin: 0 -10px;
+            padding: 12px 10px;
+            border-radius: 8px;
+        }
+
+        .stats-label {
+            font-size: 0.95rem;
+            color: #495057;
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .stats-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #667eea;
+            text-align: right;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .schools-list {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e0e6ed;
+            margin-top: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .school-item {
+            padding: 18px 25px;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .school-item:last-child {
+            border-bottom: none;
+        }
+
+        .school-item:hover {
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+        }
+
+        .school-name {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.05rem;
+        }
+
+        .school-details {
+            display: flex;
+            gap: 18px;
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .admin-section {
+            background: linear-gradient(145deg, #fff3cd, #ffeaa7);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #ffc107;
+            margin-top: 25px;
+            box-shadow: 0 5px 20px rgba(255, 193, 7, 0.2);
+        }
+
+        .admin-controls {
+            display: none;
+        }
+
+        body.admin-mode .admin-controls {
+            display: block;
+        }
+
+        .admin-btn-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .message {
+            padding: 18px 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            font-weight: 500;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .message.success {
+            background: linear-gradient(145deg, #d4edda, #c3e6cb);
+            color: #155724;
+            border-left: 5px solid #28a745;
+        }
+
+        .message.error {
+            background: linear-gradient(145deg, #f8d7da, #f5c6cb);
+            color: #721c24;
+            border-left: 5px solid #dc3545;
+        }
+
+        .message.info {
+            background: linear-gradient(145deg, #d1ecf1, #bee5eb);
+            color: #0c5460;
+            border-left: 5px solid #17a2b8;
+        }
+
+        /* レスポンシブデザインの強化 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 2px;
+            }
+            
+            .header {
+                padding: 20px 15px;
+            }
+            
+            .main-title {
+                font-size: 1.6rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .tab {
+                padding: 14px 8px;
+                font-size: 0.85rem;
+            }
+            
+            .tab-content {
+                padding: 20px 15px;
+            }
+            
+            .participants-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .admin-btn-group {
+                grid-template-columns: 1fr;
+            }
+
+            .school-details {
+                flex-direction: column;
+                gap: 8px;
+                text-align: right;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 2px;
+            }
+            
+            .main-title {
+                font-size: 1.4rem;
+            }
+            
+            .btn {
+                padding: 20px 25px;
+                font-size: 1.1rem;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            select {
+                padding: 16px 18px;
+                font-size: 16px;
+            }
+
+            .stats-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            
+            .stats-value {
+                align-self: flex-end;
+            }
+        }
+
+        /* アニメーション効果の追加 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tab-content {
+            animation: fadeInUp 0.4s ease-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .btn:active {
+            animation: pulse 0.3s ease;
+        }
+
+        /* プリント最適化 */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                max-width: none;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .tabs,
+            .admin-section,
+            .btn {
+                display: none;
+            }
+            
+            .tab-content {
+                display: block !important;
+                background: white;
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+        }
+
+        /* アクセシビリティの向上 */
+        .btn:focus,
+        .tab:focus,
+        .form-control:focus {
+            outline: 3px solid #667eea;
+            outline-offset: 2px;
+        }
+
+        /* ローディング状態のスタイル */
+        .loading {
+            position: relative;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 25px;
+            height: 25px;
+            margin: -12.5px 0 0 -12.5px;
+            border: 3px solid #667eea;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="main-title">🏸 出場者調査</h1>
+            <p class="subtitle">東西高校生選抜バドミントン大会北海道予選</p>
+            <div class="info-badge">高校1・2年生対象 | 8カテゴリー詳細集計</div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" data-tab="application">📝 参加申込み</button>
+            <button class="tab" data-tab="dashboard">📊 参加状況</button>
+            <button class="tab" data-tab="admin">🔐 管理者</button>
+        </div>
+
+        <!-- 参加申込みタブ -->
+        <div id="application" class="tab-content active">
+            <form id="applicationForm">
+                <div class="form-group">
+                    <label for="schoolName">学校名 *</label>
+                    <input type="text" id="schoolName" name="schoolName" class="form-control" placeholder="○○高等学校" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="teacherName">担当者名 *</label>
+                    <input type="text" id="teacherName" name="teacherName" class="form-control" placeholder="山田 太郎" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">連絡先メールアドレス *</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="example@school.ed.jp" required>
+                </div>
+
+                <div class="participants-section">
+                    <div class="section-title">🏸 参加者数入力</div>
+                    <div class="participants-grid">
+                        <div class="participant-card">
+                            <label for="first_male_singles">1年男子シングルス</label>
+                            <select id="first_male_singles" name="first_male_singles" class="form-control">
+                                <option value="0">0名</option>
+                                <option value="1">1名</option>
+                                <option value="2">2名</option>
+                                <option value="3">3名</option>
+                                <option value="4">4名</option>
+                                <option value="5">5名</option>
+                                <option value="6">6名</option>
+                                <option value="7">7名</option>
+                                <option value="8">8名</option>
+                                <option value="9">9名</option>
+                                <option value="10">10名</option>
+                                <option value="11">11名</option>
+                                <option value="12">12名</option>
+                                <option value="13">13名</option>
+                                <option value="14">14名</option>
+                                <option value="15">15名</option>
+                                <option value="16">16名</option>
+                                <option value="17">17名</option>
+                                <option value="18">18名</option>
+                                <option value="19">19名</option>
+                                <option value="20">20名</option>
+                            </select>
+                        </div>
+                        
+                        <div class="participant-card">
+                            <label for="first_female_doubles">1年女子ダブルス</label>
+                            <select id="first_female_doubles" name="first_female_doubles" class="form-control">
+                                <option value="0">0組</option>
+                                <option value="1">1組</option>
+                                <option value="2">2組</option>
+                                <option value="3">3組</option>
+                                <option value="4">4組</option>
+                                <option value="5">5組</option>
+                                <option value="6">6組</option>
+                                <option value="7">7組</option>
+                                <option value="8">8組</option>
+                                <option value="9">9組</option>
+                                <option value="10">10組</option>
+                                <option value="11">11組</option>
+                                <option value="12">12組</option>
+                                <option value="13">13組</option>
+                                <option value="14">14組</option>
+                                <option value="15">15組</option>
+                                <option value="16">16組</option>
+                                <option value="17">17組</option>
+                                <option value="18">18組</option>
+                                <option value="19">19組</option>
+                                <option value="20">20組</option>
+                            </select>
+                        </div>
+                        
+                        <div class="participant-card">
+                            <label for="first_female_singles">1年女子シングルス</label>
+                            <select id="first_female_singles" name="first_female_singles" class="form-control">
+                                <option value="0">0名</option>
+                                <option value="1">1名</option>
+                                <option value="2">2名</option>
+                                <option value="3">3名</option>
+                                <option value="4">4名</option>
+                                <option value="5">5名</option>
+                                <option value="6">6名</option>
+                                <option value="7">7名</option>
+                                <option value="8">8名</option>
+                                <option value="9">9名</option>
+                                <option value="10">10名</option>
+                                <option value="11">11名</option>
+                                <option value="12">12名</option>
+                                <option value="13">13名</option>
+                                <option value="14">14名</option>
+                                <option value="15">15名</option>
+                                <option value="16">16名</option>
+                                <option value="17">17名</option>
+                                <option value="18">18名</option>
+                                <option value="19">19名</option>
+                                <option value="20">20名</option>
+                            </select>
+                        </div>
+                        
+                        <div class="participant-card">
+                            <label for="first_male_doubles">1年男子ダブルス</label>
+                            <select id="first_male_doubles" name="first_male_doubles" class="form-control">
+                                <option value="0">0組</option>
+                                <option value="1">1組</option>
+                                <option value="2">2組</option>
+                                <option value="3">3組</option>
+                                <option value="4">4組</option>
+                                <option value="5">5組</option>
+                                <option value="6">6組</option>
+                                <option value="7">7組</option>
+                                <option value="8">8組</option>
+                                <option value="9">9組</option>
+                                <option value="10">10組</option>
+                                <option value="11">11組</option>
+                                <option value="12">12組</option>
+                                <option value="13">13組</option>
+                                <option value="14">14組</option>
+                                <option value="15">15組</option>
+                                <option value="16">16組</option>
+                                <option value="17">17組</option>
+                                <option value="18">18組</option>
+                                <option value="19">19組</option>
+                                <option value="20">20組</option>
+                            </select>
+                        </div>
+                        
+                        <div class="participant-card">
+                            <label for="second_male_singles">2年男子シングルス</label>
+                            <select id="second_male_singles" name="second_male_singles" class="form-control">
+                                <option value="0">0名</option>
+                                <option value="1">1名</option>
+                                <option value="2">2名</option>
+                                <option value="3">3名</option>
+                                <option value="4">4名</option>
+                                <option value="5">5名</option>
+                                <option value="6">6名</option>
+                                <option value="7">7名</option>
+                                <option value="8">8名</option>
+                                <option value="9">9名</option>
+                                <option value="10">10名</option>
+                                <option value="11">11名</option>
+                                <option value="12">12名</option>
+                                <option value="13">13名</option>
+                                <option value="14">14名</option>
+                                <option value="15">15名</option>
+                                <option value="16">16名</option>
+                                <option value="17">17名</option>
+                                <option value="18">18名</option>
+                                <option value="19">19名</option>
+                                <option value="20">20名</option>
+                            </select>
+                        </div>
+                        
+                        <div class="participant-card">
+                            <label for="second_female_doubles">2年女子ダブルス</label>
+                            <select id="second_female_doubles" name="second_female_doubles" class="form-control">
+                                <option value="0">0組</option>
+                                <option value="1">1組</option>
+                                <option value="2">2組</option>
+                                <option value="3">3組</option>
+                                <option value="4">4組</option>
+                                <option value="5">5組</option>
+                                <option value="6">6組</option>
+                                <option value="7">7組</option>
+                                <option value="8">8組</option>
+                                <option value="9">9組</option>
+                                <option value="10">10組</option>
+                                <option value="11">11組</option>
+                                <option value="12">12組</option>
+                                <option value="13">13組</option>
+                                <option value="14">14組</option>
+                                <option value="15">15組</option>
+                                <option value="16">16組</option>
+                                <option value="17">17組</option>
+                                <option value="18">18組</option>
+                                <option value="19">19組</option>
+                                <option value="20">20組</option>
+                            </select>
+                        </div>
+                        
+                        <div class="participant-card">
+                            <label for="second_female_singles">2年女子シングルス</label>
+                            <select id="second_female_singles" name="second_female_singles" class="form-control">
+                                <option value="0">0名</option>
+                                <option value="1">1名</option>
+                                <option value="2">2名</option>
+                                <option value="3">3名</option>
+                                <option value="4">4名</option>
+                                <option value="5">5名</option>
+                                <option value="6">6名</option>
+                                <option value="7">7名</option>
+                                <option value="8">8名</option>
+                                <option value="9">9名</option>
+                                <option value="10">10名</option>
+                                <option value="11">11名</option>
+                                <option value="12">12名</option>
+                                <option value="13">13名</option>
+                                <option value="14">14名</option>
+                                <option value="15">15名</option>
+                                <option value="16">16名</option>
+                                <option value="17">17名</option>
+                                <option value="18">18名</option>
+                                <option value="19">19名</option>
+                                <option value="20">20名</option>
+                            </select>
+                        </div>
+                        
+                        <div class="participant-card">
+                            <label for="second_male_doubles">2年男子ダブルス</label>
+                            <select id="second_male_doubles" name="second_male_doubles" class="form-control">
+                                <option value="0">0組</option>
+                                <option value="1">1組</option>
+                                <option value="2">2組</option>
+                                <option value="3">3組</option>
+                                <option value="4">4組</option>
+                                <option value="5">5組</option>
+                                <option value="6">6組</option>
+                                <option value="7">7組</option>
+                                <option value="8">8組</option>
+                                <option value="9">9組</option>
+                                <option value="10">10組</option>
+                                <option value="11">11組</option>
+                                <option value="12">12組</option>
+                                <option value="13">13組</option>
+                                <option value="14">14組</option>
+                                <option value="15">15組</option>
+                                <option value="16">16組</option>
+                                <option value="17">17組</option>
+                                <option value="18">18組</option>
+                                <option value="19">19組</option>
+                                <option value="20">20組</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn">📤 調査回答を送信</button>
+            </form>
+        </div>
+
+        <!-- 参加状況タブ -->
+        <div id="dashboard" class="tab-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 15px;">
+                <h2 style="color: #2c3e50; margin: 0; font-size: 1.4rem;">📊 参加状況分析</h2>
+                <div class="admin-controls">
+                    <button onclick="exportCSV()" class="btn" style="width: auto; margin: 0; padding: 12px 24px; font-size: 1rem;">
+                        📁 CSV出力
+                    </button>
+                </div>
+            </div>
+
+            <div id="statistics"></div>
+            <div id="applicantsList"></div>
+        </div>
+
+        <!-- 管理者タブ -->
+        <div id="admin" class="tab-content">
+            <div class="admin-section">
+                <div class="section-title">🔐 管理者機能</div>
+                <div class="form-group">
+                    <label for="adminPassword">管理者パスワード</label>
+                    <input type="password" id="adminPassword" class="form-control" placeholder="パスワードを入力">
+                </div>
+                <button type="button" class="btn" onclick="adminLogin()">🔓 管理者ログイン</button>
+                
+                <div class="admin-controls" id="adminControls">
+                    <div class="admin-btn-group">
+                        <button type="button" class="btn" onclick="exportCSV()">📥 CSVエクスポート</button>
+                        <button type="button" class="btn btn-danger" onclick="clearAllData()">🗑️ 全データクリア</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // グローバル変数
+        let applications = [];
+        let isAdminMode = false;
+
+        // ローカルストレージのキー
+        const STORAGE_KEY = 'badminton_applications_survey_2024';
+
+        // ページ読み込み時の初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('バドミントン出場者調査システム初期化開始');
+            loadData();
+            updateDashboard();
+            setupEventListeners();
+            enhanceSmartphoneSupport();
+            console.log('システム初期化完了');
+        });
+
+        // データ読み込み
+        function loadData() {
+            try {
+                const data = localStorage.getItem(STORAGE_KEY);
+                applications = data ? JSON.parse(data) : [];
+                console.log(`${applications.length}件のデータを読み込みました`);
+            } catch (error) {
+                console.error('データ読み込みエラー:', error);
+                applications = [];
+                showMessage('⚠️ データの読み込み中にエラーが発生しました。', 'error');
+            }
+        }
+
+        // データ保存
+        function saveData() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(applications));
+                console.log('データを保存しました');
+            } catch (error) {
+                console.error('データ保存エラー:', error);
+                showMessage('⚠️ データの保存中にエラーが発生しました。', 'error');
+            }
+        }
+
+        // イベントリスナーの設定
+        function setupEventListeners() {
+            // タブクリックイベント
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetTab = this.getAttribute('data-tab');
+                    switchTab(targetTab);
+                });
+            });
+
+            // フォーム送信イベント
+            document.getElementById('applicationForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                handleFormSubmit(e);
+            });
+
+            console.log('イベントリスナー設定完了');
+        }
+
+        // タブ切り替え
+        function switchTab(tabName) {
+            console.log('タブ切り替え:', tabName);
+            
+            // 全てのタブとコンテンツを非アクティブに
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // 指定されたタブとコンテンツをアクティブに
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+            
+            // ダッシュボードタブの場合はデータを更新
+            if (tabName === 'dashboard') {
+                updateDashboard();
+            }
+        }
+
+        // フォーム送信処理
+        function handleFormSubmit(e) {
+            console.log('フォーム送信開始');
+            
+            // ローディング状態に設定
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = '送信中...';
+            submitBtn.classList.add('loading');
+            
+            try {
+                const formData = new FormData(e.target);
+                const data = {};
+                
+                // 必須フィールドの検証
+                const requiredFields = ['schoolName', 'teacherName', 'email'];
+                for (let field of requiredFields) {
+                    const value = formData.get(field);
+                    if (!value || value.trim() === '') {
+                        throw new Error(`${getFieldLabel(field)}は必須項目です。`);
+                    }
+                    data[field] = value.trim();
+                }
+                
+                // メールアドレスの形式検証
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(data.email)) {
+                    throw new Error('正しいメールアドレスを入力してください。');
+                }
+                
+                // 数値フィールドの処理
+                const numberFields = [
+                    'first_male_singles', 'first_male_doubles',
+                    'first_female_singles', 'first_female_doubles',
+                    'second_male_singles', 'second_male_doubles',
+                    'second_female_singles', 'second_female_doubles'
+                ];
+                
+                let totalParticipants = 0;
+                for (let field of numberFields) {
+                    let value = parseInt(formData.get(field)) || 0;
+                    data[field] = value;
+                    // ダブルスは1組=2人で計算
+                    if (field.includes('doubles')) {
+                        totalParticipants += value * 2;
+                    } else {
+                        totalParticipants += value;
+                    }
+                }
+                
+                // 参加者数の検証
+                if (totalParticipants === 0) {
+                    throw new Error('少なくとも1名以上の参加予定者を選択してください。');
+                }
+                
+                // 既存申込のチェック
+                const existingIndex = applications.findIndex(app => 
+                    app.schoolName.toLowerCase() === data.schoolName.toLowerCase()
+                );
+                
+                if (existingIndex !== -1) {
+                    if (!confirm('この学校からの回答が既に存在します。データを更新しますか？')) {
+                        return;
+                    }
+                    applications[existingIndex] = { ...data, timestamp: new Date().toISOString() };
+                    showMessage('✅ 申込み情報を更新しました！', 'success');
+                } else {
+                    applications.push({ ...data, timestamp: new Date().toISOString() });
+                    showMessage('✅ 参加申込みを受け付けました！ありがとうございます🎉', 'success');
+                }
+                
+                // データ保存
+                saveData();
+                updateDashboard();
+                
+                // フォームリセット
+                e.target.reset();
+                
+                // ダッシュボードタブに切り替え
+                setTimeout(() => {
+                    switchTab('dashboard');
+                }, 2500);
+                
+                console.log('フォーム送信完了');
+                
+            } catch (error) {
+                showMessage(`❌ エラー: ${error.message}`, 'error');
+                console.error('フォーム送信エラー:', error);
+            } finally {
+                // ローディング状態を解除
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.classList.remove('loading');
+                }, 500);
+            }
+        }
+
+        // フィールドラベル取得
+        function getFieldLabel(field) {
+            const labels = {
+                schoolName: '学校名',
+                teacherName: '担当者名',
+                email: 'メールアドレス'
+            };
+            return labels[field] || field;
+        }
+
+        // ダッシュボード更新（8カテゴリー詳細集計機能）
+        function updateDashboard() {
+            console.log('ダッシュボード更新開始');
+            const statisticsDiv = document.getElementById('statistics');
+            const applicantsDiv = document.getElementById('applicantsList');
+            
+            if (!statisticsDiv || !applicantsDiv) {
+                console.error('ダッシュボード要素が見つかりません');
+                return;
+            }
+            
+            if (applications.length === 0) {
+                statisticsDiv.innerHTML = `
+                    <div class="message info">
+                        <strong>📢 調査開始</strong><br>
+                        まだ参加申込みがありません。各校からの回答をお待ちしています。
+                    </div>
+                `;
+                applicantsDiv.innerHTML = '';
+                return;
+            }
+
+            // 統計計算
+            const stats = calculateStatistics();
+            
+            // 5セクション構成の詳細統計表示（これまでの積み重ね）
+            statisticsDiv.innerHTML = `
+                <div class="stats-grid">
+                    <div class="stats-section">
+                        <div class="stats-title">1️⃣ 基本統計</div>
+                        <div class="stats-item">
+                            <span class="stats-label">回答学校数</span>
+                            <span class="stats-value">${stats.totalSchools}校</span>
+                        </div>
+                        <div class="stats-item">
+                            <span class="stats-label">総参加予定者数</span>
+                            <span class="stats-value">${stats.totalParticipants}名</span>
+                        </div>
+                    </div>
+
+                    <div class="stats-section">
+                        <div class="stats-title">2️⃣ 学年別集計</div>
+                        <div class="stats-item">
+                            <span class="stats-label">1年生参加予定者数</span>
+                            <span class="stats-value">${stats.firstYearTotal}名</span>
+                        </div>
+                        <div class="stats-item">
+                            <span class="stats-label">2年生参加予定者数</span>
+                            <span class="stats-value">${stats.secondYearTotal}名</span>
+                        </div>
+                    </div>
+
+                    <div class="stats-section">
+                        <div class="stats-title">3️⃣ 性別集計</div>
+                        <div class="stats-item">
+                            <span class="stats-label">男子参加予定者数（1・2年合計）</span>
+                            <span class="stats-value">${stats.maleTotal}名</span>
+                        </div>
+                        <div class="stats-item">
+                            <span class="stats-label">女子参加予定者数（1・2年合計）</span>
+                            <span class="stats-value">${stats.femaleTotal}名</span>
+                        </div>
+                    </div>
+
+                    <div class="stats-section">
+                        <div class="stats-title">4️⃣ 競技種目別集計</div>
+                        <div class="stats-item">
+                            <span class="stats-label">シングルス総数（男女・学年合計）</span>
+                            <span class="stats-value">${stats.singlesTotal}名</span>
+                        </div>
+                        <div class="stats-item">
+                            <span class="stats-label">ダブルス総数（男女・学年合計）</span>
+                            <span class="stats-value">${stats.doublesTotal}組</span>
+                        </div>
+                        <div class="stats-item">
+                            <span class="stats-label">ダブルス参加者数（組×2名）</span>
+                            <span class="stats-value">${stats.doublesTotal * 2}名</span>
+                        </div>
+                    </div>
+
+                    <div class="stats-section" style="grid-column: 1 / -1;">
+                        <div class="stats-title">5️⃣ 詳細集計（全8カテゴリー）</div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px;">
+                            <div class="stats-item">
+                                <span class="stats-label">🥇 1年生男子シングルス</span>
+                                <span class="stats-value">${stats.firstMaleSingles}名</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">🏆 1年生男子ダブルス</span>
+                                <span class="stats-value">${stats.firstMaleDoubles}組</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">🥇 1年生女子シングルス</span>
+                                <span class="stats-value">${stats.firstFemaleSingles}名</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">🏆 1年生女子ダブルス</span>
+                                <span class="stats-value">${stats.firstFemaleDoubles}組</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">🥇 2年生男子シングルス</span>
+                                <span class="stats-value">${stats.secondMaleSingles}名</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">🏆 2年生男子ダブルス</span>
+                                <span class="stats-value">${stats.secondMaleDoubles}組</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">🥇 2年生女子シングルス</span>
+                                <span class="stats-value">${stats.secondFemaleSingles}名</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">🏆 2年生女子ダブルス</span>
+                                <span class="stats-value">${stats.secondFemaleDoubles}組</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // 学校別一覧の表示（個人情報保護対応）
+            const sortedApplications = [...applications].sort((a, b) => a.schoolName.localeCompare(b.schoolName));
+            
+            applicantsDiv.innerHTML = `
+                <div class="section-title">📋 参加校一覧</div>
+                <div class="schools-list">
+                    ${sortedApplications.map(app => {
+                        const schoolStats = calculateSchoolStats(app);
+                        return `
+                            <div class="school-item">
+                                <div class="school-name">🏫 ${app.schoolName}</div>
+                                <div class="school-details">
+                                    <span>🥇 シングルス: ${schoolStats.singlesTotal}名</span>
+                                    <span>🏆 ダブルス: ${schoolStats.doublesTotal}組</span>
+                                    <span><strong>👥 合計: ${schoolStats.totalPeople}名</strong></span>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+            
+            console.log('ダッシュボード更新完了');
+        }
+
+        // 統計計算（8カテゴリー対応）
+        function calculateStatistics() {
+            const stats = {
+                totalSchools: applications.length,
+                totalParticipants: 0,
+                firstYearTotal: 0,
+                secondYearTotal: 0,
+                maleTotal: 0,
+                femaleTotal: 0,
+                singlesTotal: 0,
+                doublesTotal: 0,
+                firstMaleSingles: 0,
+                firstMaleDoubles: 0,
+                firstFemaleSingles: 0,
+                firstFemaleDoubles: 0,
+                secondMaleSingles: 0,
+                secondMaleDoubles: 0,
+                secondFemaleSingles: 0,
+                secondFemaleDoubles: 0
+            };
+
+            applications.forEach(app => {
+                stats.firstMaleSingles += app.first_male_singles || 0;
+                stats.firstMaleDoubles += app.first_male_doubles || 0;
+                stats.firstFemaleSingles += app.first_female_singles || 0;
+                stats.firstFemaleDoubles += app.first_female_doubles || 0;
+                stats.secondMaleSingles += app.second_male_singles || 0;
+                stats.secondMaleDoubles += app.second_male_doubles || 0;
+                stats.secondFemaleSingles += app.second_female_singles || 0;
+                stats.secondFemaleDoubles += app.second_female_doubles || 0;
+            });
+
+            // 人数計算（ダブルスは1組=2人）
+            stats.firstYearTotal = stats.firstMaleSingles + (stats.firstMaleDoubles * 2) + stats.firstFemaleSingles + (stats.firstFemaleDoubles * 2);
+            stats.secondYearTotal = stats.secondMaleSingles + (stats.secondMaleDoubles * 2) + stats.secondFemaleSingles + (stats.secondFemaleDoubles * 2);
+            stats.maleTotal = stats.firstMaleSingles + (stats.firstMaleDoubles * 2) + stats.secondMaleSingles + (stats.secondMaleDoubles * 2);
+            stats.femaleTotal = stats.firstFemaleSingles + (stats.firstFemaleDoubles * 2) + stats.secondFemaleSingles + (stats.secondFemaleDoubles * 2);
+            stats.singlesTotal = stats.firstMaleSingles + stats.firstFemaleSingles + stats.secondMaleSingles + stats.secondFemaleSingles;
+            stats.doublesTotal = stats.firstMaleDoubles + stats.firstFemaleDoubles + stats.secondMaleDoubles + stats.secondFemaleDoubles;
+            stats.totalParticipants = stats.firstYearTotal + stats.secondYearTotal;
+
+            return stats;
+        }
+
+        // 学校別統計計算
+        function calculateSchoolStats(app) {
+            const singlesTotal = (app.first_male_singles || 0) + (app.first_female_singles || 0) + 
+                               (app.second_male_singles || 0) + (app.second_female_singles || 0);
+            const doublesTotal = (app.first_male_doubles || 0) + (app.first_female_doubles || 0) + 
+                               (app.second_male_doubles || 0) + (app.second_female_doubles || 0);
+            const totalPeople = singlesTotal + (doublesTotal * 2);
+            
+            return {
+                singlesTotal,
+                doublesTotal,
+                totalPeople
+            };
+        }
+
+        // 管理者ログイン
+        function adminLogin() {
+            const password = document.getElementById('adminPassword').value;
+            
+            if (password === 'badminton2024') {
+                isAdminMode = true;
+                document.body.classList.add('admin-mode');
+                document.getElementById('adminPassword').value = '';
+                showMessage('✅ 管理者としてログインしました。高度な機能をご利用いただけます。', 'success');
+                updateDashboard();
+            } else {
+                showMessage('❌ パスワードが正しくありません。', 'error');
+                document.getElementById('adminPassword').value = '';
+            }
+        }
+
+        // CSV出力（Excel対応）
+        function exportCSV() {
+            console.log('CSV出力開始');
+            
+            if (!isAdminMode) {
+                showMessage('❌ 管理者権限が必要です。先にログインしてください。', 'error');
+                return;
+            }
+            
+            if (applications.length === 0) {
+                showMessage('ℹ️ エクスポートするデータがありません。', 'info');
+                return;
+            }
+
+            const headers = [
+                '学校名', '担当者名', 'メールアドレス',
+                '1年男子シングルス', '1年男子ダブルス', '1年女子シングルス', '1年女子ダブルス',
+                '2年男子シングルス', '2年男子ダブルス', '2年女子シングルス', '2年女子ダブルス',
+                '合計参加者数', '申込日時'
+            ];
+
+            const csvData = applications.map(app => {
+                const schoolStats = calculateSchoolStats(app);
+                return [
+                    app.schoolName,
+                    app.teacherName,
+                    app.email,
+                    app.first_male_singles || 0,
+                    app.first_male_doubles || 0,
+                    app.first_female_singles || 0,
+                    app.first_female_doubles || 0,
+                    app.second_male_singles || 0,
+                    app.second_male_doubles || 0,
+                    app.second_female_singles || 0,
+                    app.second_female_doubles || 0,
+                    schoolStats.totalPeople,
+                    new Date(app.timestamp).toLocaleString('ja-JP')
+                ];
+            });
+
+            const csvContent = [headers, ...csvData]
+                .map(row => row.map(field => `"${field}"`).join(','))
+                .join('\n');
+
+            // UTF-8 BOM付きでExcel対応
+            const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', `badminton_survey_${new Date().toISOString().split('T')[0]}.csv`);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            showMessage('✅ CSVファイルをダウンロードしました。Excelで開けます📊', 'success');
+        }
+
+        // 全データクリア
+        function clearAllData() {
+            if (applications.length === 0) {
+                showMessage('ℹ️ クリアするデータがありません。', 'info');
+                return;
+            }
+
+            if (confirm('⚠️ 本当にすべてのデータを削除しますか？\nこの操作は取り消せません。')) {
+                if (confirm('⚠️ 最終確認\nすべての申込みデータが完全に削除されます。\n続行しますか？')) {
+                    applications = [];
+                    localStorage.removeItem(STORAGE_KEY);
+                    updateDashboard();
+                    showMessage('✅ すべてのデータを削除しました。', 'success');
+                }
+            }
+        }
+
+        // メッセージ表示（視覚効果強化）
+        function showMessage(message, type = 'info') {
+            // 既存メッセージを削除
+            const existingMessage = document.querySelector('.message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+
+            // 新しいメッセージを作成
+            const messageElement = document.createElement('div');
+            messageElement.className = `message ${type}`;
+            messageElement.innerHTML = message;
+
+            // メッセージを挿入
+            const container = document.querySelector('.container');
+            container.insertBefore(messageElement, container.children[1]);
+
+            // 7秒後に自動削除
+            setTimeout(() => {
+                if (messageElement.parentNode) {
+                    messageElement.style.opacity = '0';
+                    messageElement.style.transform = 'translateY(-20px)';
+                    setTimeout(() => {
+                        messageElement.remove();
+                    }, 300);
+                }
+            }, 7000);
+
+            // メッセージまでスムーズスクロール
+            messageElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // スマートフォン対応強化
+        function enhanceSmartphoneSupport() {
+            // タッチイベントの改善
+            document.querySelectorAll('.btn, .tab').forEach(element => {
+                element.addEventListener('touchstart', function(e) {
+                    this.style.opacity = '0.8';
+                    this.style.transform = 'scale(0.98)';
+                }, { passive: true });
+                
+                element.addEventListener('touchend', function(e) {
+                    this.style.opacity = '1';
+                    this.style.transform = 'scale(1)';
+                }, { passive: true });
+                
+                element.addEventListener('touchcancel', function(e) {
+                    this.style.opacity = '1';
+                    this.style.transform = 'scale(1)';
+                }, { passive: true });
+            });
+
+            // フォーム要素のフォーカス改善
+            document.querySelectorAll('input, select').forEach(element => {
+                element.addEventListener('focus', function() {
+                    setTimeout(() => {
+                        this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 300);
+                });
+            });
+
+            // バーチャルキーボード対応
+            if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+                window.addEventListener('resize', function() {
+                    if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT') {
+                        setTimeout(() => {
+                            document.activeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }, 100);
+                    }
+                });
+            }
+
+            console.log('スマートフォン対応強化完了');
+        }
+
+        // エラーハンドリング
+        window.addEventListener('error', function(e) {
+            console.error('JavaScriptエラー:', e.error);
+            showMessage('⚠️ システムエラーが発生しました。ページを再読み込みしてください。', 'error');
+        });
+
+        window.addEventListener('unhandledrejection', function(e) {
+            console.error('未処理Promise拒否:', e.reason);
+            showMessage('⚠️ システムエラーが発生しました。ページを再読み込みしてください。', 'error');
+        });
+
+        // パフォーマンス最適化
+        window.addEventListener('load', function() {
+            console.log('🏸 東西高校生選抜バドミントン大会 出場者調査システム 起動完了');
+            console.log('📊 8カテゴリー詳細集計機能搭載');
+            console.log('📱 スマートフォン完全対応');
+            console.log('🔐 管理者機能: パスワード badminton2024');
+        });
+    </script>
+</body>
+</html>
