@@ -1,2 +1,2 @@
-# -badminton-survey
+# index.html 
 東西高校生選抜バドミントン大会北海道予選 参加希望調査システム
